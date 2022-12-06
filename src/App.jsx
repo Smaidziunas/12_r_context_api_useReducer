@@ -5,18 +5,17 @@ import LoginPage from './pages/LoginPage';
 import UserOnlyPage from './pages/UserOnlyPage';
 import Header from './components/Header';
 import { useState } from 'react';
+import AuthContext from './store/AuthContext';
 
 function App() {
   const history = useHistory();
   const [userEmail, setUserEmail] = useState('');
   const isUserLoggedIn = !!userEmail;
-
-  //
   const handleLogin = (newLoginObj) => {
     // console.log('handleLogin in LoginPage', newLoginObj);
     // if login success we redirect to userOnly page
     // imituojam teisinga email
-    const validEmail = 'james@bond.com';
+    const validEmail = 'james@band.com';
     if (newLoginObj.email === validEmail) {
       // login success
       console.log('login success');
@@ -34,27 +33,29 @@ function App() {
     history.push('/login');
   };
 
+  // 3 prideti i contextValue  handleLogin
+  const contextValue = {
+    userEmail: userEmail,
+    isUserLoggedIn: isUserLoggedIn,
+    logout: handleLogout,
+  };
+
   return (
-    <AuthContext.Provider value {555}>
-    <div className='App container'>
-      <Header
-        onLogout={handleLogout}
-        userEmail={userEmail}
-        isUserLoggedIn={isUserLoggedIn}
-      />
-      <Switch>
-        <Route path={'/user-page'}>
-          <UserOnlyPage onLogout={handleLogout} />
-        </Route>
-        <Route path={'/login'}>
-          <LoginPage onLogin={handleLogin} />
-        </Route>
-        <Route path={'/'} exact>
-          <HomePage />
-        </Route>
-      </Switch>
-    </div>
-    
+    <AuthContext.Provider value={contextValue}>
+      <div className='App container'>
+        <Header />
+        <Switch>
+          <Route path={'/user-page'}>
+            <UserOnlyPage />
+          </Route>
+          <Route path={'/login'}>
+            <LoginPage />
+          </Route>
+          <Route path={'/'} exact>
+            <HomePage />
+          </Route>
+        </Switch>
+      </div>
     </AuthContext.Provider>
   );
 }

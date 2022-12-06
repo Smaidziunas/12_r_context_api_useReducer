@@ -1,8 +1,16 @@
+import { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import AuthContext from './../store/AuthContext';
 
 function Header(props) {
-  const isUserLoggedIn = props.isUserLoggedIn;
-  const userEmail = props.userEmail;
+  // gauti context
+  const ctx = useContext(AuthContext);
+  console.log('ctx ===', ctx);
+  // 1 nustatyti isUserLoggedIn reiksme is ctx
+  const isUserLoggedIn = true;
+
+  // 2 nustatyti userEmail reiksme is ctx
+  const userEmail = '';
 
   return (
     <header className='main-header'>
@@ -28,8 +36,8 @@ function Header(props) {
         )}
         {isUserLoggedIn && (
           <Link className='nav-link' to={'/login'}>
-            {/* // onclick headeryje paspaudus logout span atsiloginam */}
-            <span onClick={props.onLogout}>Logout</span>
+            {/* headeryje paspaudus lougout span, onClick atsiloginam  */}
+            <span>Logout</span>
           </Link>
         )}
 
