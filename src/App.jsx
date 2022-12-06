@@ -3,12 +3,15 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import UserOnlyPage from './pages/UserOnlyPage';
+import Header from './components/Header';
+import LoginForm from './components/LoginForm';
 
 function App() {
   return (
     <div className='App container'>
+      <Header />
+      {/* <LoginForm /> */}
       <Switch>
-        {/* jeigu rasom keleta zodziu reikia taprelio negalima camel case */}
         <Route path={'/user-page'}>
           <UserOnlyPage />
         </Route>
