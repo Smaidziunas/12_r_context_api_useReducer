@@ -19,6 +19,11 @@ function LoginForm(props) {
 
   function submitHandler(e) {
     e.preventDefault();
+    const loginObj = {
+      email: emailValue,
+      password: passwordValue,
+    };
+    props.onLogin(loginObj);
   }
 
   //
