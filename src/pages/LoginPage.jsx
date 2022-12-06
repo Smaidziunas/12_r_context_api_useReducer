@@ -6,6 +6,13 @@ function LoginPage(props) {
     console.log('handleLogin in LoginPage', newLoginObj);
     // if login success we redirect to userOnly page
     const validEmail = 'james@bond.com';
+    if (newLoginObj.email === validEmail) {
+      // login success
+      console.log('login success');
+      //redirect
+    } else {
+      console.log('nepavyko prisijungti');
+    }
   };
 
   return (
